@@ -1,4 +1,4 @@
-# Local Ollama/Deepseek Interface
+# Local Ollama/Deepseek UI
 
 ## Setup:
 + Install Ollama.
