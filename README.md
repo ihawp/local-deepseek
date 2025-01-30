@@ -7,6 +7,6 @@
   + ***ollama serve***
 
 ## Change Models:
-Navigate to main.js, inside the ***fetch*** change the url where the version is specified.
+Navigate to chat.js, inside the ***fetch*** change the url where the version is specified.
 
 ### Thanks for reading!
