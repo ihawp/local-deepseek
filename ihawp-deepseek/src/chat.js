@@ -1,3 +1,5 @@
+import { marked } from 'marked';
+
 export async function Chat(event)  {
 
     const chat = document.getElementById('chat');
@@ -42,15 +44,12 @@ export async function Chat(event)  {
     */
     let data = await response.json();
 
-    console.log(data.response);
 
-    chat.innerHTML += `<p class="ai">${data.response.match(/<think>(.*?)<\/think>/s)[1]}</p>`;
     /*
 
         Add AI response to DOM
 
     */
-    chat.innerHTML += `<p class="ai">${data.response}</p>`;
-
+    chat.innerHTML += `<div class="ai">${marked.parse(data.response)}</div>`;
 
 }

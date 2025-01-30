@@ -1,5 +1,5 @@
-import './ihawp.css'
-import { Chat } from './chat.js'
+import './ihawp.css';
+import { Chat } from './alt.js';
 
 document.querySelector('#app').innerHTML = `
   <main>
@@ -8,11 +8,10 @@ document.querySelector('#app').innerHTML = `
     <section id="inputSection">
       <label for="input" hidden>Input:</label>
       <textarea id="input" placeholder="Type Something..."></textarea>
-      <button id="submitInput"><img src="media/send-arrow.webp" alt="Arrow WEBP" width="43" height="30"></button>
+      <button id="submitInput"><img src="/send-arrow.webp" alt="Arrow WEBP" width="43" height="30"></button>
     </section>
 
   </main>
-`
-
+`;
 
 document.getElementById('submitInput').addEventListener('click', Chat);

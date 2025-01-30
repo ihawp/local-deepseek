@@ -80,7 +80,8 @@ body {
 }
 .ai {
     border: 2px solid #fff;
-    padding: .5rem;
+    padding: .5rem 0 .5rem 1.75rem;
     opacity: 0.6;
     border-radius: 4px;
+    overflow-y: scroll
 }
