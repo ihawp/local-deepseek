@@ -1,9 +1,11 @@
 import ollama from 'ollama';
 import { marked } from 'marked';
 
+let iteration = 0;
+
 export async function Chat(event)  {
 
-    console.log(event);
+
 
     const chat = document.getElementById('chat');
 
@@ -14,12 +16,22 @@ export async function Chat(event)  {
     */
     chat.innerHTML += `<p class="user">${event.target.previousElementSibling.value}</p>`;
 
+
+    /*
+
+    Add p that will have thoughts printed.
+
+    */
+    let g = `<div id="chat-${iteration}" class="ai"></div>`
+    chat.innerHTML += g;
+
     /*
 
         Fetches responses locally hosted Ollama LLM model.
+        Stores response in variable 'response'.
 
     */
-    let response = await ollama. chat({
+    const response = await ollama. chat({
         model: 'deepseek-r1:1.5b',
         messages: [{
             role: 'user',
@@ -31,28 +43,29 @@ export async function Chat(event)  {
 
     /*
 
-        Add p that will have thoughts printed.
-
-    */
-    let g = document.createElement('div');
-    g.id = '' + iteration;
-    chat.innerHTML += g;
-
-
-    /*
-
         Readable Stream
 
     */
     for await (const part of response) {
+        console.log('iteration' + iteration);
+        let wow = 'chat-' + iteration;
+        const thisItr = document.getElementById(wow);
+        console.log(thisItr);
         /*
 
             Add AI response to DOM.
 
         */
-        chat.innerHTML += `<div class="ai">${marked.parse(part.message.content)}</div>`;
+        thisItr.innerHTML += `${marked.parse(part.message.content)}`;
 
     }
+
+    /*
+
+        Increment iteration.
+
+    */
+    iteration++;
 
     /*
 
@@ -60,14 +73,5 @@ export async function Chat(event)  {
 
     */
     event.target.previousElementSibling.value = '';
-
-
-    /*
-
-        Store call to response.
-
-    */
-
-    console.log(response);
 
 }
