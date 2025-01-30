@@ -1,11 +1,6 @@
-import ollama from 'ollama';
 import { marked } from 'marked';
 
-let iteration = 0;
-
 export async function Chat(event)  {
-
-
 
     const chat = document.getElementById('chat');
 
@@ -16,62 +11,45 @@ export async function Chat(event)  {
     */
     chat.innerHTML += `<p class="user">${event.target.previousElementSibling.value}</p>`;
 
-
     /*
 
-    Add p that will have thoughts printed.
+        Fetches responses locally hosted Ollama LLM model,
+        in this case I am using DeepSeek.
 
     */
-    let g = `<div id="chat-${iteration}" class="ai"></div>`
-    chat.innerHTML += g;
-
-    /*
-
-        Fetches responses locally hosted Ollama LLM model.
-        Stores response in variable 'response'.
-
-    */
-    const response = await ollama. chat({
-        model: 'deepseek-r1:1.5b',
-        messages: [{
-            role: 'user',
-            content: event.target.previousElementSibling.value
-        }],
-        stream: true
+    const response = await fetch(`http://localhost:11434/api/generate`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            model: 'deepseek-r1:1.5b',
+            prompt: event.target.previousElementSibling.value,
+            stream: false
+        }),
     });
 
-
     /*
 
-        Readable Stream
-
-    */
-    for await (const part of response) {
-        console.log('iteration' + iteration);
-        let wow = 'chat-' + iteration;
-        const thisItr = document.getElementById(wow);
-        console.log(thisItr);
-        /*
-
-            Add AI response to DOM.
-
-        */
-        thisItr.innerHTML += `${marked.parse(part.message.content)}`;
-
-    }
-
-    /*
-
-        Increment iteration.
-
-    */
-    iteration++;
-
-    /*
-
-        Reset the textarea (id: #input).
+        Reset the textarea (id: #input)
 
     */
     event.target.previousElementSibling.value = '';
+
+
+    /*
+
+        Store call to response
+
+    */
+    let data = await response.json();
+
+
+    /*
+
+        Add AI response to DOM
+
+    */
+    chat.innerHTML += `<div class="ai">${marked.parse(data.response)}</div>`;
 
 }
