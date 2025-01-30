@@ -10,7 +10,7 @@ document.querySelector('#app').innerHTML = `
 
       <label for="input" hidden>Input:</label>
       <textarea id="input" placeholder="Type Something..."></textarea>
-      <button id="submitInput">send</button>
+      <button id="submitInput"><img src="/send-arrow.webp" alt="Arrow WEBP" width="43" height="30"></button>
       
       <!-- <img src="/send-arrow.webp" alt="Arrow WEBP" width="43" height="30"> -->
       

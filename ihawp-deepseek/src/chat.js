@@ -1,14 +1,13 @@
-/* ihawp.com */
+/* ihawp.com
 
-
-/*
+    UI for chat with Ollama LLM Models
 
     Imports:
         - Ollama: For stream reading of output, compared to 'ollama serve'.
         - Marked: Convert instances of AI output returned in Markdown.
 
 */
-import ollama from 'ollama';
+import ollama from 'ollama/browser'
 import { marked } from 'marked';
 
 
@@ -24,14 +23,15 @@ export async function Chat(event)  {
 
     /*
 
-        Disable <button id="submitInput">
+        Disable <button id="submitInput">.
 
     */
     event.target.setAttribute('disabled', 'disabled');
 
+
     /*
 
-        Chat must be got inside!
+        Get chat.
 
     */
     const chat = document.getElementById('chat');
@@ -39,14 +39,10 @@ export async function Chat(event)  {
 
     /*
 
-        Add user input (message) to DOM
+        Add user input (message) to DOM.
 
     */
-
-    console.log(event.target.previousElementSibling.value);
-    console.log(marked.parse(event.target.previousElementSibling.value));
-
-    chat.innerHTML += `<p class="user">${event.target.previousElementSibling.value}</p>`;
+    chat.innerHTML += `<div class="user">${marked.parse(event.target.previousElementSibling.value)}</div>`;
 
 
     /*
@@ -75,7 +71,15 @@ export async function Chat(event)  {
 
     /*
 
-        Readable Stream
+        Reset the <textarea id="#input"> value.
+
+    */
+    event.target.previousElementSibling.value = '';
+
+
+    /*
+
+        Readable stream.
 
     */
     for await (const part of response) {
@@ -85,10 +89,11 @@ export async function Chat(event)  {
 
         */
         let itr = document.getElementById('chat-' + iteration);
-        itr.innerHTML += part.message.content;
+        itr.innerHTML += marked.parse(part.message.content);
         itr.scrollIntoView({block: "end", inline: "end"});
 
     }
+
 
     /*
 
@@ -100,12 +105,22 @@ export async function Chat(event)  {
 
     /*
 
-        Reset the textarea (id: #input).
+        Disable <button id="submitInput">.
 
     */
-    event.target.previousElementSibling.value = '';
-
     event.target.removeAttribute('disabled');
+
+
+    /*
+
+        Scroll the bottom of the chat into view.
+
+        Eliminates bouncing effect compared to repeated
+        calls if inside the stream; hence use of most recent
+        piece of text for scrolling to during stream.
+
+    */
+    chat.scrollIntoView({block: "end", inline: "end"});
 
 
 }
