@@ -9,14 +9,12 @@ document.querySelector('#app').innerHTML = `
     <section id="inputSection">
 
       <label for="input" hidden>Input:</label>
-      <textarea id="input" placeholder="Type Something..."></textarea>
-      <button id="submitInput"><img src="/send-arrow.webp" alt="Arrow WEBP" width="43" height="30"></button>
-      
-      <!-- <img src="/send-arrow.webp" alt="Arrow WEBP" width="43" height="30"> -->
+      <textarea id="input"></textarea>
       
     </section>
 
   </main>
 `;
 
-document.getElementById('submitInput').addEventListener('click', Chat);
+document.addEventListener('keypress', Chat);
+document.getElementById('input').focus();
