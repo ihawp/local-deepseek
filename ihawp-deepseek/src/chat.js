@@ -17,8 +17,6 @@ import { marked } from 'marked';
 
 */
 let iteration = 0;
-let truth = false;
-
 export async function Chat(event)  {
 
     /* Get. */
@@ -26,11 +24,11 @@ export async function Chat(event)  {
     const input = document.getElementById('input');
     const value = input.value;
 
+    // exit cases
     if (event.key !== 'Enter') {
         return input.focus();
     }
-
-    if (input.value === 'Thinking...' || input.value === ' ' || input.value === '') {
+    if (value === 'Thinking...' || value === ' ' || value === '') {
         return;
     }
 
