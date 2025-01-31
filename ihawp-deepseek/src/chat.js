@@ -27,14 +27,18 @@ export async function Chat(event)  {
     const value = input.value;
 
     if (event.key !== 'Enter') {
-        input.focus()
+        return input.focus();
+    }
+
+    if (input.value === 'Thinking...' || input.value === ' ' || input.value === '') {
         return;
     }
 
     /* Date Formatting */
     const datee = (created, forr, side) => {
         let q = new Date(created);
-        chat.innerHTML += `<label for="${forr}" class="${side}">${q.getHours()}:${q.getMinutes()} ${q.getFullYear()} / ${q.getMonth() + 1} / ${q.getDate()}</label>`;
+        let minutes = q.getMinutes();
+        chat.innerHTML += `<label for="${forr}" class="${side}">${q.getMonth() + 1}/${q.getDate()} ${q.getHours()}:${minutes > 9 ? minutes : '0' + minutes}</label>`;
     }
 
     /* Disable <textarea id="#input"> */

@@ -69,6 +69,10 @@ label.right {
     color: #fff;
 }
 
+main {
+    padding: 0 1rem;
+}
+
 /* Chat Area */
 #chat {
     display: flex;
@@ -77,7 +81,7 @@ label.right {
     height: calc(100vh - 75px);
     flex-grow: 1;
 
-    padding: 1rem 1rem 1rem 0;
+    padding: 1rem 1rem 0 0;
 
     overflow-x: scroll;
 }
