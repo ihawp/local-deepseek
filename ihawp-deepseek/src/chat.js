@@ -17,6 +17,7 @@ import { marked } from 'marked';
 
 */
 let iteration = 0;
+
 export async function Chat(event)  {
 
     /* Get. */
@@ -27,17 +28,19 @@ export async function Chat(event)  {
     // exit cases
     if (event.key !== 'Enter') {
         return input.focus();
+    } else {
+        event.preventDefault();
     }
-    if (value === 'Thinking...' || value === ' ' || value === '') {
+    if (value === 'Thinking...' || value.length < 2) {
         return;
     }
 
-    /* Date Formatting */
     const datee = (created, forr, side) => {
         let q = new Date(created);
         let minutes = q.getMinutes();
         chat.innerHTML += `<label for="${forr}" class="${side}">${q.getMonth() + 1}/${q.getDate()} ${q.getHours()}:${minutes > 9 ? minutes : '0' + minutes}</label>`;
     }
+
 
     /* Disable <textarea id="#input"> */
     input.setAttribute('disabled', 'disabled');
@@ -51,13 +54,13 @@ export async function Chat(event)  {
     document.getElementById(`uchat-${iteration}`).scrollIntoView({block: "end", inline: "end"});
 
 
-
+    // add grey ai div
     chat.innerHTML += `<div id="chat-${iteration}" class="ai"></div>`;
 
     /* Fetches responses locally hosted Ollama LLM model.
        Stores response in variable 'response' */
     const response = await ollama. chat({
-        model: 'deepseek-r1:1.5b',
+        model: 'deepseek-coder:6.7b',
         messages: [{
             role: 'user',
             content: value,
@@ -69,23 +72,24 @@ export async function Chat(event)  {
     /* Readable stream */
     const chatIteration = document.getElementById('chat-' + iteration);
     for await (const part of response) {
-        /* Add timestamp if stream done */
-        if (part["done_reason"]) {
-            datee(part["created_at"], `chat-${iteration}`, 'left');
-        }
-
         /* Add AI thoughts/answer stream to DOM */
         chatIteration.innerHTML += marked.parse(part.message.content);
         chatIteration.scrollIntoView({block: "end", inline: "end"});
 
+        /* Add timestamp if stream done */
+        if (part["done_reason"]) {
+            datee(part["created_at"], `chat-${iteration}`, 'left');
+        }
     }
 
-    /* Scroll the AI chat-date into view after printing */
+    /* Scroll the AI chat date into view after printing */
     document.querySelector(`label[for="chat-${iteration}"]:last-of-type`).scrollIntoView({block: "end", inline: "end"});
 
+    // reset input
     input.removeAttribute('disabled');
     input.value = '';
     input.focus();
 
+    // increment iteration
     iteration++;
 }

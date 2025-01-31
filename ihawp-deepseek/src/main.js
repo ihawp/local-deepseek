@@ -9,7 +9,7 @@ document.querySelector('#app').innerHTML = `
     <section id="inputSection">
 
       <label for="input" hidden>Input:</label>
-      <textarea id="input" rows="1"></textarea>
+      <textarea id="input" rows="1" placeholder="Type + Enter"></textarea>
       
     </section>
 
