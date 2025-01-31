@@ -68,7 +68,7 @@ export async function Chat(event)  {
     const chatIteration = document.getElementById('chat-' + iteration);
     for await (const part of response) {
         /* Add timestamp if stream done */
-        if (part["done_reason"] === "stop") {
+        if (part["done_reason"]) {
             datee(part["created_at"], `chat-${iteration}`, 'left');
         }
 
