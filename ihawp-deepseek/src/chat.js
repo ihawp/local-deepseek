@@ -25,6 +25,7 @@ export async function Chat(event)  {
     const input = document.getElementById('input');
     const value = input.value;
 
+
     // exit cases
     if (event.key !== 'Enter') {
         return input.focus();
@@ -42,6 +43,7 @@ export async function Chat(event)  {
         let minutes = q.getMinutes();
         return `<label for="${forr}" class="${side}">${q.getHours()}:${minutes > 9 ? minutes : '0' + minutes}</label>`;
     }
+
 
     /* Scroll end items into view (used thrice) */
     const scrollIntoViewEnd = (id) => {
