@@ -30,32 +30,34 @@ export async function Chat(event)  {
         return input.focus();
     } else {
         event.preventDefault();
-    }
-    if (value === 'Thinking...' || value.length < 2) {
-        return;
+        if (value === 'Thinking...' || !value.length) {
+            return;
+        }
     }
 
-    const datee = (created, forr, side) => {
+
+    /* Formatting of message TIMEstamp */
+    const time = (created, forr, side) => {
         let q = new Date(created);
         let minutes = q.getMinutes();
-        chat.innerHTML += `<label for="${forr}" class="${side}">${q.getMonth() + 1}/${q.getDate()} ${q.getHours()}:${minutes > 9 ? minutes : '0' + minutes}</label>`;
+        return `<label for="${forr}" class="${side}">${q.getHours()}:${minutes > 9 ? minutes : '0' + minutes}</label>`;
     }
 
 
     /* Disable <textarea id="#input"> */
     input.setAttribute('disabled', 'disabled');
-
-    /* Reset the <textarea id="#input"> value */
     input.value = 'Thinking...';
+
 
     /* Add user input (message) and timestamp to DOM => Scroll timestamp into view */
     chat.innerHTML += `<div class="user" id="uchat-${iteration}">${marked.parse(value)}</div>`;
-    datee(new Date(), `uchat-${iteration}`, 'right');
+    chat.innerHTML += time(new Date(), `uchat-${iteration}`, 'right');
     document.getElementById(`uchat-${iteration}`).scrollIntoView({block: "end", inline: "end"});
 
 
-    // add grey ai div
+    /* Add AI message box and GET that message box */
     chat.innerHTML += `<div id="chat-${iteration}" class="ai"></div>`;
+    const chatIteration = document.getElementById('chat-' + iteration);
 
     /* Fetches responses locally hosted Ollama LLM model.
        Stores response in variable 'response' */
@@ -70,7 +72,6 @@ export async function Chat(event)  {
 
 
     /* Readable stream */
-    const chatIteration = document.getElementById('chat-' + iteration);
     for await (const part of response) {
         /* Add AI thoughts/answer stream to DOM */
         chatIteration.innerHTML += marked.parse(part.message.content);
@@ -78,7 +79,7 @@ export async function Chat(event)  {
 
         /* Add timestamp if stream done */
         if (part["done_reason"]) {
-            datee(part["created_at"], `chat-${iteration}`, 'left');
+            chat.innerHTML += time(part["created_at"], `chat-${iteration}`, 'left');
         }
     }
 
