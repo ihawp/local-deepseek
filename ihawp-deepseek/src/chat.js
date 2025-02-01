@@ -18,7 +18,7 @@ export async function Chat(event)  {
     const value = input.value;
 
 
-    // exit cases
+    /* Exit cases */
     if (event.key !== 'Enter') {
         return input.focus();
     } else {
