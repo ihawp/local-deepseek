@@ -93,12 +93,13 @@ export async function Chat(event)  {
     }
 
 
-    // reset input
+    /* Reset input */
     input.removeAttribute('disabled');
     input.value = '';
     input.focus();
 
 
-    // increment iteration
+    /* Increment iteration */
     iteration++;
+
 }
