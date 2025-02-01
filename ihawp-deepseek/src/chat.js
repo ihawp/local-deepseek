@@ -2,20 +2,12 @@
 
     UI for chat with Ollama LLM Models
 
-    Imports:
-        - Ollama: For stream reading of output, compared to 'ollama serve'.
-        - Marked: Convert instances of AI output returned in Markdown.
-
 */
 import ollama from 'ollama/browser';
 import { marked } from 'marked';
 
 
-/*
-
-    Initialize iteration.
-
-*/
+/* Initialize iteration. */
 let iteration = 0;
 
 export async function Chat(event)  {
