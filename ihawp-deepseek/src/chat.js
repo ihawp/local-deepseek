@@ -43,6 +43,11 @@ export async function Chat(event)  {
         return `<label for="${forr}" class="${side}">${q.getHours()}:${minutes > 9 ? minutes : '0' + minutes}</label>`;
     }
 
+    /* Scroll end items into view (used thrice) */
+    const scrollIntoViewEnd = (id) => {
+        id.scrollIntoView({block: "end", inline: "end"});
+    }
+
 
     /* Disable <textarea id="#input"> */
     input.setAttribute('disabled', 'disabled');
@@ -52,12 +57,13 @@ export async function Chat(event)  {
     /* Add user input (message) and timestamp to DOM => Scroll timestamp into view */
     chat.innerHTML += `<div class="user" id="uchat-${iteration}">${marked.parse(value)}</div>`;
     chat.innerHTML += time(new Date(), `uchat-${iteration}`, 'right');
-    document.getElementById(`uchat-${iteration}`).scrollIntoView({block: "end", inline: "end"});
+    scrollIntoViewEnd(document.getElementById(`uchat-${iteration}`));
 
 
     /* Add AI message box and GET that message box */
     chat.innerHTML += `<div id="chat-${iteration}" class="ai"></div>`;
     const chatIteration = document.getElementById('chat-' + iteration);
+
 
     /* Fetches responses locally hosted Ollama LLM model.
        Stores response in variable 'response' */
@@ -73,23 +79,25 @@ export async function Chat(event)  {
 
     /* Readable stream */
     for await (const part of response) {
-        /* Add AI thoughts/answer stream to DOM */
-        chatIteration.innerHTML += marked.parse(part.message.content);
-        chatIteration.scrollIntoView({block: "end", inline: "end"});
 
-        /* Add timestamp if stream done */
+        /* Add AI answer stream to DOM */
+        chatIteration.innerHTML += marked.parse(part.message.content);
+        scrollIntoViewEnd(chatIteration);
+
+        /* Add timestamp and scroll timestamp into view when stream done */
         if (part["done_reason"]) {
             chat.innerHTML += time(part["created_at"], `chat-${iteration}`, 'left');
+            scrollIntoViewEnd(document.querySelector(`label[for="chat-${iteration}"]:last-of-type`));
         }
+
     }
 
-    /* Scroll the AI chat date into view after printing */
-    document.querySelector(`label[for="chat-${iteration}"]:last-of-type`).scrollIntoView({block: "end", inline: "end"});
 
     // reset input
     input.removeAttribute('disabled');
     input.value = '';
     input.focus();
+
 
     // increment iteration
     iteration++;
