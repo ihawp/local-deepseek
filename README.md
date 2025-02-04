@@ -1,4 +1,4 @@
-# Local Ollama/Deepseek UI Executable for Windows 10...
+# Local Ollama/Deepseek UI Executable for Windows 10
 
 ## Requirements:
 + Ollama
