@@ -1,5 +1,7 @@
 # Local Ollama/Deepseek UI Executable for Windows 10
 
+Still under development; 'release' on ***main*** branch.
+
 ## Requirements:
 + Ollama
 + Powershell
@@ -29,5 +31,6 @@ Use the Windows key to search things like 'Powershell', 'File Explorer' if menti
 ## Thoughts:
 + Node.js could be removed as a dependency.
 + Make sure it will work if in D:// directory.
++ Maybe it could all just be a Powershell file.
 
 ### Thanks for reading!

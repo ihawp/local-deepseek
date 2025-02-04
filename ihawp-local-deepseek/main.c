@@ -2,14 +2,18 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-
 void main();
-
 
 void main() {
 
-	const char *path = "C://ihawp-local-deepseek/ui/";
+    /*
 
+        Initialize the path variable... it will find the files you need!
+        Initialize the command variable.
+
+    */
+    char path[] = "D://ihawp-local-deepseek/ui";
+    char command[100];
 
 	/*
 
@@ -28,22 +32,23 @@ void main() {
 		Open the default port for the react project in users default browser.
 
 	*/
-	system("start powershell.exe start \"\" \"http://localhost:5173\"");
+	system("start \"\" \"http://localhost:5173\"");
 
 
 	/*
 
 		Open a new Powershell window.
-		change to project path (this will have to change to make it useful app,
-					I'm sure there is a way to search the computer
-					for a project..? or something of the sort... without
-					having to make the user input in a powershell window the
-					path to the directory that 'npm run dev' should be run in).
+		Change to proper path (change path based on ihawp-local-deepseek existing in C:// or D://).
 		Run 'npm run dev'.
 
 	*/
-	chdir(path);
-	system("start powershell.exe npm run dev");
-	system("start powershell.exe C://ihawp-local-deepseek/hidePowershellCMD.ps1");
+    if (chdir(path) == -1) {
+        *path = 'C';
+        chdir(path);
+    }
+    system("start powershell.exe npm run dev");
+
+    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/hidePowershellCMD.ps1", *path);
+    system(command);
 
 }
