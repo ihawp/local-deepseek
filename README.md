@@ -1,5 +1,7 @@
 # Local Ollama/Deepseek UI Executable for Windows 10...
 
+Still under development; 'release' on ***main*** branch.
+
 ## Requirements:
 + Ollama
 + Powershell
