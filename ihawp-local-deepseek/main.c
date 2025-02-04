@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-
 void main();
+int directoryExists(const char *path);
 
 
 void main() {
-
-	const char *path = "C://ihawp-local-deepseek/ui/";
 
 
 	/*
@@ -42,8 +40,17 @@ void main() {
 		Run 'npm run dev'.
 
 	*/
-	chdir(path);
-	system("start powershell.exe npm run dev");
-	system("start powershell.exe C://ihawp-local-deepseek/hidePowershellCMD.ps1");
+    char path[] = "D://ihawp-local-deepseek/ui";
+
+    if (chdir(path) == -1) {
+        *path = 'C';
+        chdir(path);
+    }
+    system("start powershell.exe npm run dev");
+
+    char command[200];
+    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/hidePowershellCMD.ps1", *path);
+
+    system(command);
 
 }
