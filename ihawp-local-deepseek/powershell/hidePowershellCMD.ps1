@@ -10,7 +10,7 @@ public class Win32ShowWindow {
 "@
 
 # Get all PowerShell processes
-$processes = Get-Process -Name "cmd", "powershell";
+$processes = Get-Process -Name "powershell";
 
 foreach ($process in $processes) {
     # Get the main window handle
