@@ -22,3 +22,5 @@ foreach ($process in $processes) {
         [Win32ShowWindow]::ShowWindow([IntPtr]$hwnd, 2) # 2 is SW_MINIMIZE
     }
 }
+
+Pause
