@@ -9,7 +9,7 @@ Still under development; 'release' on ***main*** branch.
 
 ## Setup
 
-### Windows 10
+### Windows 10... 11?
 
 Use the Windows key to search things like 'Powershell', 'File Explorer' if mentioned.
 
