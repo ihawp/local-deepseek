@@ -28,7 +28,7 @@ Use the Windows key to search things like 'Powershell', 'File Explorer' if menti
 
 ## Thoughts:
 + Node.js could be removed as a dependency.
-+ Make sure it will work if in D:// directory.
++ Make sure it will work if in ***D://*** directory.
 + Maybe it could all just be a Powershell file... but I want to try something; have C host a server that can recieve a request from the JS when the user closes the tab to end the Powershell instances.
 
 ### Thanks for reading!
