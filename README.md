@@ -9,7 +9,7 @@
 
 ### Windows 10... 11?
 
-Use the Windows key to search things like 'PowerShell', 'File Explorer' if mentioned.
+**Tips:** Use the Windows key to search things like 'PowerShell', 'File Explorer' if mentioned. Also typing ***cd ..*** will take you up a level of directories in PowerShell, keep using this command until you reach only ***C://***. Use ***cd ihawp-local-deepseek*** to enter the project directory. 
 
 1. Install Ollama (https://ollama.com/download).
   2. Install a LLM:
@@ -26,6 +26,8 @@ Use the Windows key to search things like 'PowerShell', 'File Explorer' if menti
 1. Open PowerShell as an administrator:
    + Right-click PowerShell in Search/Taskbar, then press ***Run as Administrator***.
 2. Run this command: ***Set-ExecutionPolicy -ExecutionPolicy RemoteSigned***.
+
+**Note:** If you have installed my application and run it and the Powershell windows stayed open you can 'trust' the powershell window minimizing script by opening file explorer locating the ***ihawp-local-deepseek*** folder, then locating the ***powershell*** folder inside. Once there right-click the ***hidePowershellCMD.ps1*** script, click ***properties*** and a tab will open. At the bottom of this tab there will be a message related to this script being from another computer. Pick the option that allows the script to run and then click "***Apply***".
 
 ## Change Models:
 + Navigate to ***ui/chat.js***, inside the ***fetch*** change the model where the model is specified in the ***response*** variable.
