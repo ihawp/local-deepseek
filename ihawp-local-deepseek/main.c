@@ -48,7 +48,7 @@ void main() {
     }
     system("start powershell.exe npm run dev");
 
-    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/hidePowershellCMD.ps1", *path);
+    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/hidePowershellCMD.ps1", *path);
     system(command);
 
 }
