@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include <windows.h>
+#include <tchar.h>
+#include <psapi.h>
+
 void main();
 
 void main() {
@@ -15,6 +19,12 @@ void main() {
     char path[] = "D://ihawp-local-deepseek/ui";
     char command[100];
 
+    /*
+
+        Close Ollama if running
+
+    */
+    system("start powershell.exe ./powershell/closeOllama.ps1");
 
 	/*
 
@@ -58,8 +68,4 @@ void main() {
     sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/hidePowershellCMD.ps1", *path);
     system(command);
 
-}
-
-void wow() {
-    printf("C");
 }

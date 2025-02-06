@@ -61,17 +61,15 @@ export async function Chat(event)  {
 
     /* Fetches responses locally hosted Ollama LLM model.
        Stores response in variable 'response' */
-    const response = await ollama. chat({
+    const response = await ollama.chat({
         model: 'deepseek-coder:6.7b',
         messages: [{
             role: 'user',
             content: value,
         }],
         stream: true,
+        keep_alive: "5m",
     });
-
-
-/*
     for await (const part of response) {
 
 
@@ -84,7 +82,6 @@ export async function Chat(event)  {
         }
 
     }
-*/
 
     /* Reset input */
     input.removeAttribute('disabled');
