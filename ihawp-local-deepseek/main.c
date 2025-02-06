@@ -2,10 +2,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <windows.h>
-#include <tchar.h>
-#include <psapi.h>
-
 void main();
 
 void main() {
@@ -21,10 +17,10 @@ void main() {
 
     /*
 
-        Close Ollama if running
+        Close Ollama instances if running
 
     */
-    system("start powershell.exe ./powershell/closeOllama.ps1");
+    system("start powershell.exe $wow = Get-Process | Where-Object { $_.ProcessName -like '*ollama*' } | Select-Object Id \n taskkill /F /PID $wow[0].id \n taskkill /F /PID $wow[1].id");
 
 	/*
 
