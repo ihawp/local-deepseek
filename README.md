@@ -5,7 +5,7 @@
 + PowerShell
 + Node.js
 
-## Setup
+## Setup:
 
 ### Windows 10/11
 
