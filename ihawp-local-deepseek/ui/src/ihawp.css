@@ -12,24 +12,34 @@ html {
     box-sizing: inherit;
 }
 body {
-    background-color: black;
-    color: #fff;
-    font-family: sans-serif;
+    background: #222;
+}
+body, #input {
     font-size: 1.125rem;
+    font-family: sans-serif;
+    color: #fff;
 }
 main {
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
-section {
-    width: 100%;
+
+
+/* Flex */
+.flex, .ai {
+    display: flex;
+}
+.flex-col {
+    flex-direction: column;
+}
+
+/* Padding */
+.p-1 {
+    padding: 1rem;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
-    background: transparent;
+    width: 6px;
 }
 ::-webkit-scrollbar-thumb {
     background: #333;
@@ -49,67 +59,36 @@ label.left, .ai {
 label.right, .user {
     align-self: end;
 }
-#inputSection {
-    bottom: 0;
-    display: flex;
-    padding: 1rem 0 0 0;
-}
 #input {
     outline: none;
     background: transparent;
     border: none;
-
     flex-grow: 1;
     resize: none;
-    font-family: sans-serif;
-    font-size: 1.125rem;
     height: 43px;
-}
-#input {
-    color: #fff;
-}
-
-main {
-    padding: 0 1rem;
 }
 
 /* Chat Area */
 #chat {
-    display: flex;
-    flex-direction: column;
     gap: 1rem;
-    height: calc(100vh - 59px);
-    flex-grow: 1;
-
-    padding: 1rem 1rem 0 0;
-
+    height: calc(100vh - 75px);
     overflow-x: scroll;
 }
 .user, .ai {
     line-height: 1.75rem;
     padding: 1rem;
-    overflow-y: scroll;
+    border-radius: 4px;
 }
 .user {
     background: white;
     color: #222;
-    border-radius: 4px;
     max-width: 60%;
 }
 .ai {
     max-width: 70%;
-    border: 2px solid #444;
     background: #444;
-    border-radius: 4px;
-    display: flex;
     flex-wrap: wrap;
     gap: .23rem;
-}
-
-
-.ai ul {
-    list-style: none;
-    margin: 10px;
 }
 
 @media (min-width: 50em) {
