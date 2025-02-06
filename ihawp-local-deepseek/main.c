@@ -15,32 +15,6 @@ void main() {
     char path[] = "D://ihawp-local-deepseek/ui";
     char command[100];
 
-    /*
-
-        Close Ollama instances if running
-
-    */
-    system("start powershell.exe $wow = Get-Process | Where-Object { $_.ProcessName -like '*ollama*' } | Select-Object Id \n taskkill /F /PID $wow[0].id \n taskkill /F /PID $wow[1].id");
-
-	/*
-
-		Serve Ollama locally from Ollama (required local app and preinstalled LLM models 
-		and whatnot but of course you can change the models being used and what not in 
-		the JS files).
-
-		ExecutionPolicy needs to be set to RemoteSigned (I'll leave this up to the user)
-
-	*/
-	system("start powershell.exe ollama serve");
-
-
-	/*
-
-		Open the default port for the react project in users default browser.
-
-	*/
-	system("start \"\" \"http://localhost:5173\"");
-
 
 	/*
 
@@ -55,13 +29,38 @@ void main() {
     }
     system("start powershell.exe npm run dev");
 
+
     /*
 
-        formats and stores a series of characters and values in the array pointed to by buffer
-        buffer: a sequential section of memory that is used to temporarily store some data that is being transferred from one place to another
+        Close running Ollama instances (if necessary).
+
+		Serve Ollama locally from Ollama (required local app and preinstalled LLM models
+		and whatnot but of course you can change the models being used and what not in
+		the JS files).
+
+		ExecutionPolicy needs to be set to RemoteSigned (I'll leave this up to the user).
+
+		restartOllama.ps1 runs 'ollama serve'
 
     */
-    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/hidePowershellCMD.ps1", *path);
+    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/restartOllama.ps1", *path);
     system(command);
+
+
+    /*
+
+        Hide PowerShell windows.
+
+    */
+    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/hidePowershell.ps1", *path);
+    system(command);
+
+
+	/*
+
+		Open the default port for the react project in users default browser.
+
+	*/
+	system("start \"\" \"http://localhost:5173\"");
 
 }
