@@ -17,7 +17,6 @@ export async function Chat(event)  {
     const input = document.getElementById('input');
     const value = input.value;
 
-
     /* Exit cases */
     if (event.key !== 'Enter') {
         return input.focus();
@@ -27,7 +26,6 @@ export async function Chat(event)  {
             return;
         }
     }
-
 
     /* Formatting of message TIMEstamp */
     const time = (created, forr, side) => {
@@ -61,31 +59,27 @@ export async function Chat(event)  {
 
     /* Fetches responses locally hosted Ollama LLM model.
        Stores response in variable 'response' */
-    const response = await ollama. chat({
+    const response = await ollama.chat({
         model: 'deepseek-coder:6.7b',
         messages: [{
             role: 'user',
             content: value,
         }],
         stream: true,
+        keep_alive: "5m",
     });
-
-
-    /* Readable stream */
     for await (const part of response) {
 
-        /* Add AI answer stream to DOM */
+
         chatIteration.innerHTML += marked.parse(part.message.content);
         scrollIntoViewEnd(chatIteration);
 
-        /* Add timestamp and scroll timestamp into view when stream done */
         if (part["done_reason"]) {
             chat.innerHTML += time(part["created_at"], `chat-${iteration}`, 'left');
             scrollIntoViewEnd(document.querySelector(`label[for="chat-${iteration}"]:last-of-type`));
         }
 
     }
-
 
     /* Reset input */
     input.removeAttribute('disabled');
