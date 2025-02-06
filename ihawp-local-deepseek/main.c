@@ -15,6 +15,7 @@ void main() {
     char path[] = "D://ihawp-local-deepseek/ui";
     char command[100];
 
+
 	/*
 
 		Serve Ollama locally from Ollama (required local app and preinstalled LLM models 
@@ -48,7 +49,17 @@ void main() {
     }
     system("start powershell.exe npm run dev");
 
+    /*
+
+        formats and stores a series of characters and values in the array pointed to by buffer
+        buffer: a sequential section of memory that is used to temporarily store some data that is being transferred from one place to another
+
+    */
     sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/hidePowershellCMD.ps1", *path);
     system(command);
 
+}
+
+void wow() {
+    printf("C");
 }

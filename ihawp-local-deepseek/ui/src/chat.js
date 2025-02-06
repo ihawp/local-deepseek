@@ -71,21 +71,20 @@ export async function Chat(event)  {
     });
 
 
-    /* Readable stream */
+/*
     for await (const part of response) {
 
-        /* Add AI answer stream to DOM */
+
         chatIteration.innerHTML += marked.parse(part.message.content);
         scrollIntoViewEnd(chatIteration);
 
-        /* Add timestamp and scroll timestamp into view when stream done */
         if (part["done_reason"]) {
             chat.innerHTML += time(part["created_at"], `chat-${iteration}`, 'left');
             scrollIntoViewEnd(document.querySelector(`label[for="chat-${iteration}"]:last-of-type`));
         }
 
     }
-
+*/
 
     /* Reset input */
     input.removeAttribute('disabled');

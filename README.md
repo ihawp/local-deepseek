@@ -22,6 +22,8 @@ Use the Windows key to search things like 'PowerShell', 'File Explorer' if menti
 6. In the same PowerShell window, in the directory we just navigated to, run ***npm install***.
 7. Open the .exe (executable) from your taskbar by pressing the Shooting Star Icon and enjoy!
 
+**Note:** ***Ollama*** may start automatically upon restarting your computer; this functionality sort disables the app currently. To disable this press the ***Windows*** key and then type "***Startup Apps***". Ollama will show up with a fully-lowercase title and NO icon. Switch the option to off.
+
 **Note:** ***ExecutionPolicy*** must be set to ***RemoteSigned*** on your machine for Ollama to run. I assume you will run into this issue before opening my ***.exe*** since you will download and run whichever Ollama model you download and it will get mad about it first. Anywho, here are some instructions to deal with that (while you still wait for the LLM to download).
 1. Open PowerShell as an administrator:
    + Right-click PowerShell in Search/Taskbar, then press ***Run as Administrator***.
@@ -34,5 +36,6 @@ Use the Windows key to search things like 'PowerShell', 'File Explorer' if menti
 + Node.js could be removed as a dependency.
 + Make sure it will work if in ***D://*** directory.
 + Maybe it could all just be a PowerShell file... but I want to try something; have C host a server that can recieve a request from the JS when the user closes the tab to end the PowerShell instances.
++ Deal with ollama starting upon restart... perhaps shutdown the process if running kind of thing.
 
 ### Thanks for reading!
