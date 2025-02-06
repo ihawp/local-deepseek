@@ -22,6 +22,9 @@ body, #input {
 main {
     align-items: center;
 }
+section {
+    width: 100%;
+}
 
 
 /* Flex */
