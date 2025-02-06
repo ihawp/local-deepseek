@@ -15,25 +15,6 @@ void main() {
     char path[] = "D://ihawp-local-deepseek/ui";
     char command[100];
 
-	/*
-
-		Serve Ollama locally from Ollama (required local app and preinstalled LLM models 
-		and whatnot but of course you can change the models being used and what not in 
-		the JS files).
-
-		ExecutionPolicy needs to be set to RemoteSigned (I'll leave this up to the user)
-
-	*/
-	system("start powershell.exe ollama serve");
-
-
-	/*
-
-		Open the default port for the react project in users default browser.
-
-	*/
-	system("start \"\" \"http://localhost:5173\"");
-
 
 	/*
 
@@ -48,7 +29,38 @@ void main() {
     }
     system("start powershell.exe npm run dev");
 
-    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/hidePowershellCMD.ps1", *path);
+
+    /*
+
+        Close running Ollama instances (if necessary).
+
+		Serve Ollama locally from Ollama (required local app and preinstalled LLM models
+		and whatnot but of course you can change the models being used and what not in
+		the JS files).
+
+		ExecutionPolicy needs to be set to RemoteSigned (I'll leave this up to the user).
+
+		restartOllama.ps1 runs 'ollama serve'
+
+    */
+    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/restartOllama.ps1", *path);
     system(command);
+
+
+    /*
+
+        Hide PowerShell windows.
+
+    */
+    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/hidePowershell.ps1", *path);
+    system(command);
+
+
+	/*
+
+		Open the default port for the react project in users default browser.
+
+	*/
+	system("start \"\" \"http://localhost:5173\"");
 
 }
