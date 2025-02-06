@@ -17,7 +17,6 @@ export async function Chat(event)  {
     const input = document.getElementById('input');
     const value = input.value;
 
-
     /* Exit cases */
     if (event.key !== 'Enter') {
         return input.focus();
@@ -27,7 +26,6 @@ export async function Chat(event)  {
             return;
         }
     }
-
 
     /* Formatting of message TIMEstamp */
     const time = (created, forr, side) => {
