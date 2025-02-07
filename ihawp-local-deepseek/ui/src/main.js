@@ -2,11 +2,11 @@ import './ihawp.css';
 import { Chat } from './chat.js';
 
 document.querySelector('#app').innerHTML = `
-  <main>
+  <main class="flex flex-col">
 
-    <section id="chat"></section>
+    <section id="chat" class="flex flex-col p-1"></section>
 
-    <section id="inputSection">
+    <section id="inputSection" class="flex p-1">
 
       <label for="input" hidden>Input:</label>
       <textarea id="input" rows="1" placeholder="Type + Enter"></textarea>
