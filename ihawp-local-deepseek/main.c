@@ -30,7 +30,6 @@ void main() {
     sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/runDev.ps1", *path);
     system(command);
 
-
     /*
 
         Close running Ollama instances (if necessary).
