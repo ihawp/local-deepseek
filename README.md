@@ -32,6 +32,7 @@
 + Navigate to ***/ui/chat.js***, inside the ***fetch*** change the model where the model is specified in the ***response*** variable.
 
 ## Thoughts:
++ Run npm install when app loaded in ui directory?
 + Node.js could be removed as a dependency.
 + Maybe it could all just be a PowerShell file... but I want to try something; have C host a server that can recieve a request from the JS when the user closes the tab to end the PowerShell instances.
 

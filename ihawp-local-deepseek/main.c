@@ -27,7 +27,9 @@ void main() {
         *path = 'C';
         chdir(path);
     }
-    system("start powershell.exe npm run dev");
+    system("start powershell.exe npm install; if ($?) { npm run dev }");
+
+
 
 
     /*
