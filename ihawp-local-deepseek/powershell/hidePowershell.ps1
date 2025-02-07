@@ -9,8 +9,10 @@ public class Win32ShowWindow {
 }
 "@
 
+# Get all PowerShell windows by name
 $processes = Get-Process -Name "powershell";
 
+# Minimize all PowerShell windows using ShowWindow
 foreach ($process in $processes) {
     $hwnd = $process.MainWindowHandle
 
