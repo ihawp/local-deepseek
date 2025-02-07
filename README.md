@@ -1,5 +1,7 @@
 # Local Ollama UI Executable for Windows 10/11
 
+https://github.com/user-attachments/assets/23fffc7d-586b-4533-9fc8-cde054ee60e0
+
 ## Requirements:
 + Ollama (https://ollama.com/download)
 + Node.js (https://nodejs.org/en/download)
