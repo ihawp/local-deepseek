@@ -27,8 +27,8 @@ void main() {
         *path = 'C';
         chdir(path);
     }
-    sprintf(command, "start powershell.exe %c://ihawp-local-deepseek/powershell/runDev.ps1", *path);
-    system(command);
+    system("start powershell.exe npm install; if ($?) { npm run dev }");
+
 
     /*
 

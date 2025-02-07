@@ -14,7 +14,8 @@
    In Powershell, run ***ollama run deepseek-coder:6.7b*** to download the default model for this UI.
    + Alternatively, you can research other models available with Ollama (https://ollama.com).
 3. Download the project folder and extract ***ihawp-local-deepseek*** to your ***C://*** or ***D://*** directory.
-4. Run the executable (ihawp-local-deepseek.exe).
+4. Open the ***/powershell*** folder, for each file right-click the file and click ***Properties***. A tab will open; at the bottom of that tab there will be a section titled '***Security***'. In this section click ***Unblock*** and then in the section below click ***Apply***.
+5. Run the executable (ihawp-local-deepseek.exe).
 
 **Note:** ***ExecutionPolicy*** must be set to ***RemoteSigned*** on your machine for Ollama to run:
 1. Open PowerShell as an administrator:
