@@ -11,5 +11,5 @@ if ($wow.Count -ne 0) {
 # Serve Ollama
 ollama serve
 
+Read-Host -Prompt "Press Enter to exit"
 
-pause

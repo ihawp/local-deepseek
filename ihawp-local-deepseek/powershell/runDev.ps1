@@ -4,4 +4,4 @@ if ($?) {
     npm run dev
 }
 
-pause
+Read-Host -Prompt "Press Enter to exit"

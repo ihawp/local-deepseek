@@ -21,4 +21,4 @@ foreach ($process in $processes) {
     }
 }
 
-pause
+Read-Host -Prompt "Press Enter to exit"
