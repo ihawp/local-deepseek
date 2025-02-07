@@ -27,7 +27,4 @@ https://github.com/user-attachments/assets/23fffc7d-586b-4533-9fc8-cde054ee60e0
 ## Change Models:
 + Navigate to ***/ui/src/chat.js***, inside the ***fetch*** change the model where the model is specified in the ***response*** variable.
 
-## Thoughts:
-+ I want to try something; have C host a server that can receive a request from the JS when the user closes the tab to end the PowerShell instances automatically.
-
 ### Thanks for reading!
