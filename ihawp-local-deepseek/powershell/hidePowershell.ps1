@@ -20,3 +20,5 @@ foreach ($process in $processes) {
         [Win32ShowWindow]::ShowWindow([IntPtr]$hwnd, 2)
     }
 }
+
+pause

@@ -10,3 +10,6 @@ if ($wow.Count -ne 0) {
 
 # Serve Ollama
 ollama serve
+
+
+pause
