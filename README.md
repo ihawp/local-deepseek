@@ -23,7 +23,7 @@
 2. Run this command: ***Set-ExecutionPolicy -ExecutionPolicy RemoteSigned***.
 
 ## Change Models:
-+ Navigate to ***/ui/chat.js***, inside the ***fetch*** change the model where the model is specified in the ***response*** variable.
++ Navigate to ***/ui/src/chat.js***, inside the ***fetch*** change the model where the model is specified in the ***response*** variable.
 
 ## Thoughts:
 + I want to try something; have C host a server that can receive a request from the JS when the user closes the tab to end the PowerShell instances automatically.
